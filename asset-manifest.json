@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/troo-shop/static/css/main.448e5b2c.css",
+    "main.js": "/troo-shop/static/js/main.d6431a42.js",
+    "static/js/787.068f3c7f.chunk.js": "/troo-shop/static/js/787.068f3c7f.chunk.js",
+    "static/media/fontawesome-webfont.svg?v=4.7.0": "/troo-shop/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
+    "static/media/fontawesome-webfont.eot": "/troo-shop/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
+    "static/media/fontawesome-webfont.ttf?v=4.7.0": "/troo-shop/static/media/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf",
+    "static/media/bootstrap-icons.woff?": "/troo-shop/static/media/bootstrap-icons.6959d0d983ee318f8880.woff",
+    "static/media/bootstrap-icons.woff2?": "/troo-shop/static/media/bootstrap-icons.b2e5aab643c6f0fd2da6.woff2",
+    "static/media/fontawesome-webfont.woff?v=4.7.0": "/troo-shop/static/media/fontawesome-webfont.f691f37e57f04c152e23.woff",
+    "static/media/fontawesome-webfont.woff2?v=4.7.0": "/troo-shop/static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
+    "index.html": "/troo-shop/index.html",
+    "main.448e5b2c.css.map": "/troo-shop/static/css/main.448e5b2c.css.map",
+    "main.d6431a42.js.map": "/troo-shop/static/js/main.d6431a42.js.map",
+    "787.068f3c7f.chunk.js.map": "/troo-shop/static/js/787.068f3c7f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.448e5b2c.css",
+    "static/js/main.d6431a42.js"
+  ]
+}
