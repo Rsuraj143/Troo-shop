@@ -1,11 +1,57 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 const Nav = () => {
+  const state = useSelector((state) => state.handleCart);
+
+  // Search bar functionality
+  const [allData, setAllData] = useState([]);
+  const [allFilterData, setAllFilterData] = useState([]);
+  const [searchField, setSearchField] = useState("");
+  
+
+  useEffect(() => {
+    axios("https://fakestoreapi.com/products")
+      .then((response) => {
+        console.log(response.data);
+        setAllData(response.data);
+        
+        
+      })
+      .catch((error) => {
+        console.log("Error getting fake data: " + error);
+      });
+  }, []);
+
+ 
+
+  const handleChange = (e) => {
+    setSearchField(e.target.value.toLowerCase())
+    const filteredPersons = allData.filter((person) => {
+      return person.title.toLowerCase().includes(e.target.value.toLowerCase());
+    });
+
+    if (e.target.value === "") {
+      setAllFilterData([])
+    } else {
+      setAllFilterData(filteredPersons)
+    }
+  };
+
+  const clearSearch = (e)=>{
+    e.preventDefault()
+    setSearchField("")
+    setAllFilterData([])
+  }
+  
+  
+  
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-light bg-white py-3">
-        <div className="container">
+      <nav className="navbar navbar-expand-lg navbar-light bg-secondary bg-white ">
+        <div className="container-fluid bg-light py-2">
           <Link className="navbar-brand fw-bold fs-4" to="/">
             TROOShopy
           </Link>
@@ -32,40 +78,61 @@ const Nav = () => {
                   Products
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/about">
-                  About
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/contact">
-                  Contact
-                </Link>
-              </li>
             </ul>
-            {/* <form className="d-flex">
+
+            <form className="d-flex me-5 w-50">
               <input
-                className="form-control me-2"
-                type="search"
+                className="form-control me-2 w-75"
+                type="text"
                 placeholder="Search"
                 aria-label="Search"
+                onChange={handleChange}
+                value={searchField}
               />
-              <button className="btn btn-outline-success" type="submit">
+              <button className="btn btn-outline-success w-10" type="submit">
                 Search
               </button>
-            </form> */}
+            </form>
+
             <div className="button">
               <Link to="/login" className="btn btn-outline-dark ms-2">
-                <i className="fa fa-sign-in me-1">  LogIn</i>
+                <i className="fa fa-sign-in me-1"> LogIn</i>
               </Link>
-              
+
               <Link to="/cart" className="btn btn-outline-dark ms-2">
-                <i className="fa fa-shopping-cart me-1">  Cart (0)</i>
+                <i className="fa fa-shopping-cart me-1">
+                  {" "}
+                  Cart ({state.length})
+                </i>
               </Link>
             </div>
           </div>
         </div>
       </nav>
+
+      <div>
+      <div>
+          {allFilterData.length > 0 && allFilterData.map((value) => {
+            return (
+              <div
+                id="search"
+                className="list-group"
+                key={value.id}
+                style={{ width: "500px", margin: "0 auto" }}
+                onClick={clearSearch}
+              >
+                <Link
+                  to={`/products/${value.id}`}
+                  className="list-group-item list-group-item-action list-group-item-light"
+                >
+                  {value.title}
+                </Link>
+                
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 };

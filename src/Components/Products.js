@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Skeleton from "react-loading-skeleton";
+
 import { Link } from "react-router-dom";
 
 const Products = () => {
@@ -16,7 +16,9 @@ const Products = () => {
       const response = await fetch("https://fakestoreapi.com/products");
       if (componentMounted) {
         setdata(await response.clone().json());
+
         setFilter(await response.json());
+
         setLoading(false);
       }
       return () => {
@@ -30,16 +32,9 @@ const Products = () => {
     return (
       <>
         <div className="col-md-3">
-          <Skeleton height={350} />
-        </div>
-        <div className="col-md-3">
-          <Skeleton height={350} />
-        </div>
-        <div className="col-md-3">
-          <Skeleton height={350} />
-        </div>
-        <div className="col-md-3">
-          <Skeleton height={350} />
+         <h1>
+         Loading.....
+         </h1>
         </div>
       </>
     );
@@ -53,7 +48,7 @@ const Products = () => {
   const ShowProducts = () => {
     return (
       <>
-        <div className="buttons d-flex justify-content-center mb-5 pb-5">
+        <div className="buttons d-flex justify-content-center mb-5">
           <button className="btn btn-outline-dark me-2" onClick={()=>setFilter(data)}>ALL</button>
           <button className="btn btn-outline-dark me-2" onClick={()=>filterProduct("men's clothing")}>Men's Clothing</button>
           <button className="btn btn-outline-dark me-2" onClick={()=>filterProduct("women's clothing")}>
@@ -65,7 +60,7 @@ const Products = () => {
         {filter.map((product) => {
           return (
             <>
-              <div className="col-md-3 mb-4">
+              <div className="col-md-3 mb-4 ">
                 <div className="card h-100 text-center p4" key={product.id}>
                   <img
                     src={product.image}
@@ -73,7 +68,7 @@ const Products = () => {
                     alt={product.title}
                     height="250px"
                   />
-                  <div className="card-body">
+                  <div className="card-body" >
                     <h5 className="card-title mb-0">
                       {product.title.substring(0, 12)}...
                     </h5>
